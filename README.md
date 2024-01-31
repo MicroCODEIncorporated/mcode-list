@@ -100,7 +100,7 @@ the 'switch languages' key, including switching the language being used in the A
     }
 ```
 
-* list-processing for values
+* list-processing for key generated values
 ```
     keys: { key1, key2, key3 };
     values: { value1, value2, value3 };
@@ -109,7 +109,7 @@ the 'switch languages' key, including switching the language being used in the A
 
 ```
 
-* list-processing for function calls
+* list-processing for key generated function calls
 ```
     keys: { key1, key2, key3 };
     functions: { func1, func2, func3 };
@@ -178,11 +178,11 @@ npm install --save-dev jsdoc
 ```
 * Configure JSDoc processing in...
 ```
-jsdoc.conf.json
+jsdoc.json
 ```
 * To regenerate the JSDocs from all source code use (from project root directory)...
 ```
-jsdoc -c .jsdoc.conf.json
+jsdoc -c .jsdoc.json
 ```
 
 ...then open ./docs/index.html
@@ -217,6 +217,8 @@ Contributors names and contact info...
 
 ## Version History
 
+* 0.0.2
+    * Added JSDocs, Jest and updated README.
 * 0.0.1
     * Initial movement of our internal code into an NPM package for ease of use in other projects.
 

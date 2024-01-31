@@ -43,6 +43,10 @@ key = 'six';
 value = list.swap(key, list2, list1);  // value = 0
 mcode.info(`list2, list1 - key:${key}, value:${value}`, moduleName );
 
+key = function2;
+value = list.swap(key, list5, list2);  // value = two
+mcode.info(`list5, list2 - key:${mcode.logifyObject(key)}, value:${value}`, moduleName);
+
 // 3) any two lists on the same subject(i.e.: the same length) can be used...
 
 key = 3;
