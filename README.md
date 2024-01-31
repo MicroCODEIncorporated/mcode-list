@@ -123,7 +123,7 @@ the 'switch languages' key, including switching the language being used in the A
     keys: { key1, key2, key3 };
     values: { value1, value2, value3 };
     ...
-    key = mcode.call(value, values, keys);
+    key = mcode.swap(value, values, keys);
 
 ```
 
