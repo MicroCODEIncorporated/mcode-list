@@ -217,6 +217,8 @@ Contributors names and contact info...
 
 ## Version History
 
+* 0.0.4
+    * Updated README, uninstalled JSDocs and Jest for publsihing.
 * 0.0.3
     * Corrected JSDocs and Jest to DEV ONLY dependencies.
 * 0.0.2
