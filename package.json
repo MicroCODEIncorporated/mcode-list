@@ -1,0 +1,32 @@
+{
+  "name": "mcode-list",
+  "version": "0.0.1",
+  "description": "Our List Processing functions. These support list of Objects--ints, string, JSON, any--that are ordered and related to other lists on the same topic. These can be used to swap one item in a list with its corresponding element in a realted list. This is similar to Dictionaries but the key:value pairing is dynamic and reverisble and not limited to two values.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicroCODEIncorporated/mcode-list.git"
+  },
+  "keywords": [
+    "Lists",
+    "Lisp",
+    "Dictionary",
+    "Json",
+    "Ordered",
+    "Calls",
+    "Extensible",
+    "Code"
+  ],
+  "author": "Timothy McGuire",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MicroCODEIncorporated/mcode-list/issues"
+  },
+  "homepage": "https://github.com/MicroCODEIncorporated/mcode-list#readme",
+  "dependencies": {
+    "mcode-log": "^0.1.4"
+  }
+}
