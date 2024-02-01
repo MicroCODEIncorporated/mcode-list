@@ -105,7 +105,7 @@ const mcode = {
      */
     ready: function ()
     {
-        mcode.log(`MicroCODE ${moduleName} v${packageJson.version} is loaded, mode: ${mode}, theme: ${theme}.`, moduleName, 'success');
+        log(`MicroCODE ${moduleName} v${packageJson.version} is loaded, mode: ${mode}, theme: ${theme}.`, moduleName, 'success');
     },
 
     /**

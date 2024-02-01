@@ -217,6 +217,8 @@ Contributors names and contact info...
 
 ## Version History
 
+* 0.0.6
+    * Updated 'mcode-log' to v0.1.10, corected 'mcode.log()' call to 'log()' with this module, and updated README.
 * 0.0.5
     * Updated 'mcode-log' to v0.1.5 and updated README.
 * 0.0.4
