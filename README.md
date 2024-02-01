@@ -60,7 +60,7 @@ At runtime you then call...
 3) uiElementText = **mcode.swap**(uiToken, uiTokens, uiLanguageList);
 4) Place 'uiElementText' in the DOM Element.
 
-...this is over simplified but you ge tthe idea I'm sure. Using techiques like these we produced the first Plant-Floor
+...this is over simplified but you get the idea. Using techiques like these we produced the first Plant-Floor
 manufacturing application in General Motors that could literally toggle thru all supported languages as fast as you could hit
 the 'switch languages' key, including switching the language being used in the App Log files.
 
@@ -118,7 +118,7 @@ the 'switch languages' key, including switching the language being used in the A
 
 ```
 
-* list-processing with mixed lists (reversibility)
+* list-processing with mixed or swapped lists (reversibility)
 ```
     keys: { key1, key2, key3 };
     values: { value1, value2, value3 };
@@ -138,13 +138,13 @@ npm install mcode-list
 
 ### Testing
 
-This package includes a simple test/demog module: **index.test.js**. running it direclty will show you all the 'log' and 'exp' formatting that occurs into the console and the recursive destruction of objects when they are logged.
+This package includes a simple demo module: **examples.js**.
+Running it directly will show you a set of examples for using **swap()** and **call()**.
 
-* From your project directory...
+* From your project directory after install...
 ```
 node .\node_modules\mcode-list\examples
 ```
-...you should see the 'severities' example shown earlier in this README.
 
 * To test with **JEST**:
 * From the **mcode-list** package directory...
@@ -217,6 +217,8 @@ Contributors names and contact info...
 
 ## Version History
 
+* 0.1.0
+    * Changed export to the Univeral Module Defintion (UMD) pattern, and now throw exceptions on list mismatches.
 * 0.0.6 - 0.0.7
     * Updated 'mcode-log' to v0.1.11, corected 'mcode.log()' call to 'log()' with this module, and updated README.
 * 0.0.5
@@ -232,10 +234,8 @@ Contributors names and contact info...
 
 ## Future Development
 
-* 0.0.*
-    * ESM and CJS packaging.
-* 0.0.*
-    * Any additional core code we development for general JavaScript MERN coding, debug, and support.
+* 0.1.*
+    * Any additional core code we development for general list processing work.
 
 
 ## License
