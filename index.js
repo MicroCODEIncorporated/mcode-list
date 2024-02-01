@@ -72,6 +72,7 @@
 // #region  I M P O R T S
 
 const log = require('mcode-log');
+const packageJson = require('./package.json');
 
 // #endregion
 
@@ -85,12 +86,21 @@ const log = require('mcode-log');
 
 // #region  C O N S T A N T S, F U N C T I O N S – P U B L I C
 
-const theme = process.env.THEME || 'dark'; // default to dark mode
-const mode = process.env.NODE_ENV || 'development'; // default to development mode
-const packageJson = require('./package.json');
-
-// @ts-ignore TS6133 - standard module definition for 'debug' logging
 const moduleName = 'mcode-list.js';
+
+// define local copy of 'getEnvVariable()' for use before 'mcode' is loaded
+// this same function is available in 'mcode-env.js' but we need it here without that package
+function getEnvVariable(key, defaultValue)
+{
+    if (typeof process !== 'undefined' && process.env && key in process.env)
+    {
+        return process.env[key];
+    }
+    return defaultValue;
+};
+
+const theme = getEnvVariable('THEME', 'dark'); // default to dark mode
+const mode = getEnvVariable('NODE_ENV', 'development'); // default to development mode
 
 /**
  * @namespace mcode
@@ -105,7 +115,7 @@ const mcode = {
      */
     ready: function ()
     {
-        log(`MicroCODE ${moduleName} v${packageJson.version} is loaded, mode: ${mode}, theme: ${theme}.`, moduleName, 'success');
+        log.success(`MicroCODE ${moduleName} v${packageJson.version} is loaded, mode: ${mode}, theme: ${theme}.`, moduleName);
     },
 
     /**
