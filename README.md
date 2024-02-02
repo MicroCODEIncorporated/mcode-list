@@ -11,7 +11,10 @@ Identical logging on both...
 
 ## Description
 
-This is our internal list processing (lisp) code. It is used for more flexibility than a standard 'Dictionary'.
+This is our own internal list processing (lisp) code. It is used to gain more flexibility than a standard 'Dictionary'.
+Building large, extensible applications it is inevitable that you will have to extend decision trees and data sets.
+Both of these can be defined as 'lists', lists that--when paired togther--make decisions, select data, execute functions, perform
+transforms, etc. Over time we have distilled this down to two (2) simple functions:
 
 * **mcode.swap()** - allows any 'list' to be used as 'keys' and any other list of the same size to be used as 'values'.
 * **mcode.call()** - allows any 'list' to be used as 'keys' to call a function in any other list of the same size.
@@ -22,11 +25,11 @@ This is our internal list processing (lisp) code. It is used for more flexibilit
 > node examples
 ```
 
-* Example of package usage...
+* Example of package use...
 
 <p align="left"><img src=".\.github\images\mcode-list-example-calls.png" width="720" title="List Calls..."></p>
 
-* Corresponding results...
+* Corresponding results (logged to console by our **mcode-log** functions)...
 
 <p align="left"><img src=".\.github\images\mcode-list-example-results.png" width="720" title="List Results..."></p>
 
@@ -34,7 +37,7 @@ This is our internal list processing (lisp) code. It is used for more flexibilit
 ## Dependencies
 
 * **Production**
-1) mcode-log - our standard logging package (_just for displayed list mismatch errors_)
+1) mcode-log - our standard logging package (_just for displaying list mismatch errors or test results_)
 
 * **Development**
 1) Node.JS - standard runtime environment
@@ -44,27 +47,39 @@ This is our internal list processing (lisp) code. It is used for more flexibilit
 
 ## Development
 
-When using list process its best to start with a good definition of the lists of objects your App will deal with.
+When using list processing it's best to start with a good definition of the lists of objects your App will deal with.
 
 **USE CASE #1**: Localization, or dynamic language switching. Where you can define lists for your UI to switch languages on-the-fly.
 
 1) The first list is a set of App defined tokens that identify a piece of text somewhere in the UI.
 2) The next list can be the English (EN) text list.
 3) The next list can be the Spanish (SP) text list.
-4) etc.
+4) ...etc.
 
-At runtime you then call...
+Then at runtime, you call...
 
 1) uiToken = DOM Element ID
-2) uiLanguageList = **mcode.swap**(uiLanguage, languages, languageLists);
-3) uiElementText = **mcode.swap**(uiToken, uiTokens, uiLanguageList);
-4) Place 'uiElementText' in the DOM Element.
+2) uiLanguage = Currently configured language from 'Settings/Context'
+3) uiLanguageList = **mcode.swap**(uiLanguage, languages, languageLists);
+4) uiElementText = **mcode.swap**(uiToken, uiTokens, uiLanguageList);
+5) Place 'uiElementText' in the DOM Element.
 
 ...this is over simplified but you get the idea. Using techiques like these we produced the first Plant-Floor
 manufacturing application in General Motors that could literally toggle thru all supported languages as fast as you could hit
 the 'switch languages' key, including switching the language being used in the App Log files.
 
-**USE CASE #2**: Remove all embedded if-then-else and switch-case logic from your App and externalize the lists that drive Application decisions.
+Adding a new language would involve:
+
+1) Add the Language ID to the list 'languages'.
+2) Add the languageList as a new list (probably external JSON item defined all 'uiTokens' in the new language).
+3) Add the selection of the language to the uiLanguage menu (another list keyed off of 'langugages' list).
+4) Add the new languageList to 'uiLanguages'.
+
+NOTE: __No code would need to be touched anywhere__.
+
+**USE CASE #2**: Move your code base to a data driven structure, one that is easily extended in the future without editing the code itself.
+
+First step, remove all embedded __if-then-else__ and __switch-case__ logic from your App and externalize the lists that drive Application decisions.
 
 * if-then-else
 ```
@@ -127,11 +142,12 @@ the 'switch languages' key, including switching the language being used in the A
 
 ```
 
-Easier, clearer, consise, and extensible, and the lists can be externalized as JSON data.
+Easier, clearer, concise, and extensible, and the lists can be externalized as JSON data.
 
 ### Installing
 
-* Use "npm install" to load the package, it can be used 'stand-alone'...
+* Get to a terminal session in the local repo folder of your project.
+* Use 'npm install' to load the package. It can be used 'stand-alone'...
 ```
 npm install mcode-list
 ```
@@ -141,10 +157,11 @@ npm install mcode-list
 This package includes a simple demo module: **examples.js**.
 Running it directly will show you a set of examples for using **swap()** and **call()**.
 
-* From your project directory after install...
+* From your project directory after installation...
 ```
 node .\node_modules\mcode-list\examples
 ```
+...this will deomnstrate thru console logging various uses of the mcode-list functions.
 
 * To test with **JEST**:
 * From the **mcode-list** package directory...
@@ -170,9 +187,16 @@ These are the functions we want at the ready in any module for development and d
 
 ### Documentation
 
-* This entire project is documented with **JSDocs**
+We believe is explicit code documentation, for other users, and for our 'future selves'.<br>
+JSDocs is a standardized system for documenting functions and data structures that produces three (3) primary outputs:
 
-* To install JSDocs use...
+1) Inline documentation for the coder.
+2) Intellisense popup documentation for the coder for every function.
+3) External 'reference manual' documentation for your entire code base, if used consistently.
+
+* This entire project--like all our projects--is documented with **JSDocs**.
+
+* To install JSDocs use, get to a terminal session in the project folder...
 ```
 npm install --save-dev jsdoc
 ```
@@ -180,7 +204,7 @@ npm install --save-dev jsdoc
 ```
 jsdoc.json
 ```
-* To regenerate the JSDocs from all source code use (from project root directory)...
+* To regenerate the JSDocs from all source code, use the following command (from the project root directory)...
 ```
 jsdoc -c .jsdoc.json
 ```
@@ -200,27 +224,30 @@ Contact Timothy McGuire, support@mcode.com.
 | Word or Acronym	| Description/Definition                                |
 |-------------------|-------------------------------------------------------|
 |  **NPM**	        | Node Package Manager, actually “Node PM”, “Node pkgmakeinst” a system to deploy, install, and maintain NodeJS Apps. (PM was a BASH utility).
-|  **NVM**	        | Node Version Manager, a tool that support changing NodeJS versions.
+|  **NVM**	        | Node Version Manager, a tool that supports changing NodeJS versions.
 |  **MERN**         | MongoDB, Express, React, Node JS.
 |  **MongoDB**      | A ‘NoSQL’ database designed for Cloud applications, also referred to as a ‘Document Store’.
 |  **Express**      | Express is *not* a database but rather an ‘extensible routing language’ for communication between a Client and a Server.
 |  **React**        | A Web UI development system, a JavaScript library developed by Facebook and made public—and Open Source—since 2013.
-|  **Node JS**      | A development stack that executes from a local file store—on a local Server—instead of from a network of |  **JSDocs**           | A toolset to automatically generate API-style documentation from source tagging.
+|  **Node JS**      | A development stack that executes from a local file store—on a local Server—instead of from a network of servers.
+|  **JSDocs**       | A toolset to automatically generate API-style documentation from source code tagging.
 
 
 ## Authors
 
-Contributors names and contact info...
+Contributor's names and contact info...
 
-* Timothy J McGuire [@TimothyMcGuire](https://twitter.com/TimothyMcGuire)
+* Timothy McGuire [@TimothyMcGuire](https://twitter.com/TimothyMcGuire) - Founder, President-CEO of MicroCODE, Inc. a software and controls engineering company in Detroit, Michigan USA.
 
 
 ## Version History
 
+* 0.1.1
+    * Improved README examples, corrected typos.
 * 0.1.0
     * Changed export to the Univeral Module Defintion (UMD) pattern, and now throw exceptions on list mismatches.
 * 0.0.6 - 0.0.7
-    * Updated 'mcode-log' to v0.1.11, corected 'mcode.log()' call to 'log()' with this module, and updated README.
+    * Updated 'mcode-log' to v0.1.11, corrected 'mcode.log()' call to 'log()' with this module, and updated README.
 * 0.0.5
     * Updated 'mcode-log' to v0.1.5 and updated README.
 * 0.0.4
@@ -235,7 +262,8 @@ Contributors names and contact info...
 ## Future Development
 
 * 0.1.*
-    * Any additional core code we development for general list processing work.
+    * Any additional core code we will develop for general list processing work.
+    * Complex function execution with passed arguments or passed functions.
 
 
 ## License
@@ -245,7 +273,10 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## MicroCODE Mantra
 
-Our slogan mark, distilled from over three decades of developing, testing, installing, and supporting 24x7x365
-manufacturing applications...
+MicroCODE, Inc. was founded in 1987 as a controls engineering and software development company.<br>
+We specialize in manufacturing and quality control applications that must run 24x7x365 for years at a time.
+
+Our slogan, distilled from over three decades of developing, testing, installing, and supporting 24x7x365
+manufacturing applications, is..
 
 <p align="left"><img src=".\.github\images\hail-caesar.png" width="720" title="Hail Caesar!"></p>
