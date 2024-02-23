@@ -242,6 +242,8 @@ Contributor's names and contact info...
 
 ## Version History
 
+* 0.1.2
+    * Upgrade 'mcode-log' to v0.1.15.
 * 0.1.1
     * Improved README examples, corrected typos.
 * 0.1.0
