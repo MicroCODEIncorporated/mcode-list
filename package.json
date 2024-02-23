@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/MicroCODEIncorporated/mcode-list/issues"
   },
-  "homepage": "https://github.com/MicroCODEIncorporated/mcode-list#readme"
+  "homepage": "https://github.com/MicroCODEIncorporated/mcode-list#readme",
+  "dependencies": {
+    "mcode-log": "^0.1.15"
+  }
 }
