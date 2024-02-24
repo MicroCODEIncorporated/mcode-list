@@ -29,6 +29,6 @@
   },
   "homepage": "https://github.com/MicroCODEIncorporated/mcode-list#readme",
   "dependencies": {
-    "mcode-log": "^0.1.17"
+    "mcode-log": "^0.1.18"
   }
 }
