@@ -242,6 +242,8 @@ Contributor's names and contact info...
 
 ## Version History
 
+* 0.2.2
+    * Upgrade 'mcode-log' to v0.2.2
 * 0.2.1
     * Upgrade 'mcode-log' to v0.2.1
 * 0.2.0
