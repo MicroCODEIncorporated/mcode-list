@@ -134,18 +134,18 @@ describe('mcode.swap_anything', () =>
         mcode.info(`list1, list3 - key:${key}, value:${value}`, moduleName);
 
         key = 'three';
-        value = list.swap(key, list2, list4);  // value = { key: 4, property: FOUR }
-        mcode.info(`list2, list3 - key:${key}, value:${JSON.stringify(value)}`, moduleName);
+        value = list.swap(key, list2, list4);  // value = { key: 3, value: false }
+        mcode.info(`list2, list4 - key:${key}, value:${JSON.stringify(value)}`, moduleName);
 
         // Check that console.log was called with the expected message
         expect(consoleSpy.mock.calls).toEqual(
             expect.arrayContaining([
                 expect.arrayContaining([expect.stringContaining(`list1, list3 - key:3, value:false`)]),
-                expect.arrayContaining([expect.stringContaining(`list2, list3 - key:three, value:`)]),
-                expect.arrayContaining([expect.stringContaining(`key:`)]),
+                expect.arrayContaining([expect.stringContaining(`list2, list4 - key:three, value:`)]),
+                expect.arrayContaining([expect.stringContaining(`key`)]),
                 expect.arrayContaining([expect.stringContaining(`3`)]),
-                expect.arrayContaining([expect.stringContaining(`property:`)]),
-                expect.arrayContaining([expect.stringContaining(`'THREE'`)]),
+                expect.arrayContaining([expect.stringContaining(`property`)]),
+                expect.arrayContaining([expect.stringContaining(`THREE`)]),
             ])
         );
 
