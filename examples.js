@@ -1,5 +1,5 @@
 // MicroCODE: define this module's name for  our 'list-log' package
-const moduleName = 'examples.js';
+const MODULE_NAME = 'examples.js';
 const list = require('./index.js');
 const mcode = require('mcode-log');
 
@@ -23,49 +23,49 @@ let value = null;
 
 key = 3;
 value = list.swap(key, list1, list2);  // value = 'three'
-mcode.info(`list1, list2 - key:${key}, value:${value}`, moduleName );
+mcode.info(`list1, list2 - key:${key}, value:${value}`, MODULE_NAME);
 
 key = 6;
 value = list.swap(key, list1, list2);  // value = 'default'
-mcode.info(`list1, list2 - key:${key}, value:${value}`, moduleName );
+mcode.info(`list1, list2 - key:${key}, value:${value}`, MODULE_NAME);
 
 key = 0;
 value = list.swap(key, list1, list2);  // value = 'default'
-mcode.info(`list1, list2 - key:${key}, value:${value}`, moduleName );
+mcode.info(`list1, list2 - key:${key}, value:${value}`, MODULE_NAME);
 
 // 2) the same lists can be used the other way around...
 
 key = 'three';
 value = list.swap(key, list2, list1);  // value = 3
-mcode.info(`list2, list1 - key:${key}, value:${value}`, moduleName );
+mcode.info(`list2, list1 - key:${key}, value:${value}`, MODULE_NAME);
 
 key = 'six';
 value = list.swap(key, list2, list1);  // value = 0
-mcode.info(`list2, list1 - key:${key}, value:${value}`, moduleName );
+mcode.info(`list2, list1 - key:${key}, value:${value}`, MODULE_NAME);
 
 key = function2;
 value = list.swap(key, list5, list2);  // value = two
-mcode.info(`list5, list2 - key:${mcode.logifyObject(key)}, value:${value}`, moduleName);
+mcode.info(`list5, list2 - key:${mcode.logifyObject(key)}, value:${value}`, MODULE_NAME);
 
 // 3) any two lists on the same subject(i.e.: the same length) can be used...
 
 key = 3;
 value = list.swap(key, list1, list3);  // value = false
-mcode.info(`list1, list3 - key:${key}, value:${value}`, moduleName );
+mcode.info(`list1, list3 - key:${key}, value:${value}`, MODULE_NAME);
 
 key = 'three';
 value = list.swap(key, list2, list4);  // value = { key: 4, property: FOUR }
-mcode.info(`list2, list3 - key:${key}, value:${JSON.stringify(value)}`, moduleName );
+mcode.info(`list2, list3 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
 
 // 4) any list can be used to call a function in another list...
 
 key = 3;
 value = list.call(key, list1, list5);  // value = 'function3() was called.'
-mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, moduleName );
+mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
 
 key = 99;
 value = list.call(key, list1, list5);  // value = 'functionDefault() was called.'
-mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, moduleName );
+mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
 
 function function1()
 {

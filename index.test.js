@@ -1,5 +1,5 @@
 // MicroCODE: define this module's name for  our 'mcode' package
-const moduleName = 'index.test.js';
+const MODULE_NAME = 'index.test.js';
 const list = require('./index.js');
 const mcode = require('mcode-log');
 
@@ -63,15 +63,15 @@ describe('mcode.swap_simple', () =>
 
         key = 3;
         value = list.swap(key, list1, list2);  // value = 'three'
-        mcode.info(`list1, list2 - key:${key}, value:${value}`, moduleName);
+        mcode.info(`list1, list2 - key:${key}, value:${value}`, MODULE_NAME);
 
         key = 6;
         value = list.swap(key, list1, list2);  // value = 'default'
-        mcode.info(`list1, list2 - key:${key}, value:${value}`, moduleName);
+        mcode.info(`list1, list2 - key:${key}, value:${value}`, MODULE_NAME);
 
         key = 0;
         value = list.swap(key, list1, list2);  // value = 'default'
-        mcode.info(`list1, list2 - key:${key}, value:${value}`, moduleName);
+        mcode.info(`list1, list2 - key:${key}, value:${value}`, MODULE_NAME);
 
         // Check that console.log was called with the expected message
         expect(consoleSpy.mock.calls).toEqual(
@@ -97,15 +97,15 @@ describe('mcode.swap_reverse', () =>
 
         key = 'three';
         value = list.swap(key, list2, list1);  // value = 3
-        mcode.info(`list2, list1 - key:${key}, value:${value}`, moduleName);
+        mcode.info(`list2, list1 - key:${key}, value:${value}`, MODULE_NAME);
 
         key = 'six';
         value = list.swap(key, list2, list1);  // value = 0
-        mcode.info(`list2, list1 - key:${key}, value:${value}`, moduleName);
+        mcode.info(`list2, list1 - key:${key}, value:${value}`, MODULE_NAME);
 
         key = function2;
         value = list.swap(key, list5, list2);  // value = two
-        mcode.info(`list5, list2 - key:${mcode.logifyObject(key)}, value:${value}`, moduleName);
+        mcode.info(`list5, list2 - key:${mcode.logifyObject(key)}, value:${value}`, MODULE_NAME);
 
         // Check that console.log was called with the expected message
         expect(consoleSpy.mock.calls).toEqual(
@@ -131,11 +131,11 @@ describe('mcode.swap_anything', () =>
 
         key = 3;
         value = list.swap(key, list1, list3);  // value = false
-        mcode.info(`list1, list3 - key:${key}, value:${value}`, moduleName);
+        mcode.info(`list1, list3 - key:${key}, value:${value}`, MODULE_NAME);
 
         key = 'three';
         value = list.swap(key, list2, list4);  // value = { key: 3, value: false }
-        mcode.info(`list2, list4 - key:${key}, value:${JSON.stringify(value)}`, moduleName);
+        mcode.info(`list2, list4 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
 
         // Check that console.log was called with the expected message
         expect(consoleSpy.mock.calls).toEqual(
@@ -164,11 +164,11 @@ describe('mcode.call_functions', () =>
 
         key = 3;
         value = list.call(key, list1, list5);  // value = 'function3() was called.'
-        mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, moduleName);
+        mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
 
         key = 99;
         value = list.call(key, list1, list5);  // value = 'functionDefault() was called.'
-        mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, moduleName);
+        mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
 
         // Check that console.log was called with the expected message
         expect(consoleSpy.mock.calls).toEqual(

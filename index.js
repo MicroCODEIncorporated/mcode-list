@@ -91,7 +91,7 @@ const packageJson = require('./package.json');
 // #region  C O N S T A N T S, F U N C T I O N S – P U B L I C
 
 // MicroCODE: define this module's name for our 'mcode-log' package
-const moduleName = 'mcode-list.js';
+const MODULE_NAME = 'mcode-list.js';
 
 // define local copy of 'getEnvVar()' for use before 'mcode' is loaded
 // this same function is available in 'mcode-env.js' but we need it here without that package
@@ -145,7 +145,7 @@ const mcode = {
      */
     ready: function ()
     {
-        log.success(`MicroCODE ${moduleName} v${packageJson.version} is loaded, mode: ${mode}, theme: ${theme}.`, moduleName);
+        log.success(`MicroCODE ${MODULE_NAME} v${packageJson.version} is loaded, mode: ${mode}, theme: ${theme}.`, MODULE_NAME);
     },
 
     /**
