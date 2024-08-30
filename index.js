@@ -61,6 +61,7 @@
  *                                    CommonJS/Node.js, and browser global in our exported module.
  *  01-Feb-2024   TJM-MCODE  {0003}   Swap() and Call() now throw an error if the 'keys' and 'values' lists are not the same length,
  *                                    instead of looging the error and returning a default value.
+ *  29-Jan-2024   TJM-MCODE  {0004}   Updated Call() to accept and pass arguments to the functions in the 'functions' list.
  *
  *
  *
@@ -76,7 +77,6 @@
 // #region  I M P O R T S
 
 const log = require('mcode-log');
-const packageJson = require('./package.json');
 
 // #endregion
 
@@ -92,30 +92,6 @@ const packageJson = require('./package.json');
 
 // MicroCODE: define this module's name for our 'mcode-log' package
 const MODULE_NAME = 'mcode-list.js';
-
-// define local copy of 'getEnvVar()' for use before 'mcode' is loaded
-// this same function is available in 'mcode-env.js' but we need it here without that package
-
-/**
- * @function getEnvVar
- * @memberof mcode
- * @desc a private helper function that returns the value of an environment variable, or a default value if not found.
- * @param {any} key the name of the environment variable to get.
- * @param {any} defaultValue the default value to return if the environment variable is not found.
- * @returns {any} the value of the environment variable, or the default value if not found.
- */
-function getEnvVar(key, defaultValue)
-{
-    if (typeof process !== 'undefined' && process.env && key in process.env)
-    {
-        return process.env[key];
-    }
-    return defaultValue;
-};
-
-// get our environment variables if we're on a Node.js platform
-const theme = getEnvVar('THEME', 'dark'); // default to dark mode
-const mode = getEnvVar('NODE_ENV', 'development'); // default to development mode
 
 /**
  * @func getIndex
@@ -137,16 +113,6 @@ function getIndex(key, keys)
  * @desc mcode namespace containing functions and constants.
  */
 const mcode = {
-
-    /**
-     * @func ready
-     * @memberof mcode
-     * @desc Logs a message to the Console when the module is loaded to show version.
-     */
-    ready: function ()
-    {
-        log.success(`MicroCODE ${MODULE_NAME} v${packageJson.version} is loaded, mode: ${mode}, theme: ${theme}.`, MODULE_NAME);
-    },
 
     /**
      * @func swap
@@ -233,20 +199,21 @@ const mcode = {
     /**
      * @func call
      * @memberof mcode
-     * @desc Calls a function from a 'functions' list using a 'key' index found in a 'keys' list.
+     * @desc Calls a function from a 'functions' list using a 'key' index found in a 'keys' list, passing additional arguments to the function.
      * @api public
      * @param {any} key a JavaScript value viewed as a 'key' in the 'keys' list.
      * @param {any[]} keys a JavaScript array of values viewed as 'keys' list.
-     * @param {any[]} functions a JavaScript array of values viewed as 'values' list.
+     * @param {function[]} functions a JavaScript array of functions viewed as 'values' list.
+     * @param {...any} args additional arguments to be passed to the selected function.
      * @returns {any} the return value from the function called in 'functions' list corresponding to the 'key' in the 'keys' list.
      *
      * @example
      *      let keys = [1, 2, 3, 4, 5, null];
      *      let functions = [function1, function2, function3, function4, function5, default];
      *      let key = 3;
-     *      let value = mcode.call(key, keys, functions);  // value = (return value of function3)
+     *      let value = mcode.call(key, keys, functions, 'arg1', 'arg2');  // value = (return value of function3('arg1', 'arg2'))
      */
-    call: function (key, keys, functions)
+    call: function (key, keys, functions, ...args)
     {
         // ensure the source and destination lists are the same length
         if (keys.length !== functions.length)
@@ -254,9 +221,12 @@ const mcode = {
             throw new Error(`mcode-list.call(): The 'keys' and 'functions' lists are not the same length, keys.length:${keys.length} !== functions.length:${functions.length}`);
         }
 
-        // return the value of the function called from the 'functions' list corresponding to the 'key' in the 'keys' list, or the value returned by the default function
-        return functions[getIndex(key, keys)]();
-    },
+        // retrieve the index of the key or the default index
+        const index = getIndex(key, keys);
+
+        // call the function from the 'functions' list corresponding to the 'key' in the 'keys' list, passing the additional arguments
+        return functions[index](...args);
+    }
 };
 
 // #endregion

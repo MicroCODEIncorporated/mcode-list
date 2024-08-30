@@ -1,4 +1,4 @@
-// MicroCODE: define this module's name for  our 'list-log' package
+// MicroCODE: define this module's name for  our 'mcode-log' package
 const MODULE_NAME = 'examples.js';
 const list = require('./index.js');
 const mcode = require('mcode-log');
@@ -15,6 +15,7 @@ let list4 = [
     {key: 0, property: 'DEFAULT'}];
 
 let list5 = [function1, function2, function3, function4, function5, functionDefault];
+let list6 = [functionArg1, functionArg2, functionArg3, functionArg4, functionArg5, functionArgDefault];
 
 let key = null;
 let value = null;
@@ -67,7 +68,25 @@ key = 99;
 value = list.call(key, list1, list5);  // value = 'functionDefault() was called.'
 mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
 
-function function1()
+// 4) any list can be used to call a function in another list with a varible # of params...
+
+key = 1;
+value = list.call(key, list1, list6, ['param1']);  // value = 'functionArg3() was called.'
+mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
+
+key = 3;
+value = list.call(key, list1, list6, ['param1', 'param2', 'param3']);  // value = 'functionArg3() was called.'
+mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
+
+key = 5;
+value = list.call(key, list1, list6, ['param1', 'param2', 'param3', 'param4', 'param5']);  // value = 'functionArg5() was called.'
+mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
+
+key = 99;
+value = list.call(key, list1, list6, ['param1', 'param2', 'param3']);  // value = 'functionArgDefault() was called.'
+mcode.info(`list1, list5 - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
+
+function function1([])
 {
     return 'function1() was called.';
 }
@@ -95,4 +114,41 @@ function function5()
 function functionDefault()
 {
     return 'functionDefault() was called.';
+}
+
+
+function functionArg1(params)
+{
+    const args = JSON.stringify(params).replace(/"/g, "'");
+    return `functionArg1() called, with params: ${args}`;
+}
+
+function functionArg2(params)
+{
+    const args = JSON.stringify(params).replace(/"/g, "'");
+    return `functionArg2() called, with params: ${args}`;
+}
+
+function functionArg3(params)
+{
+    // convert params to a string with " truned to '...
+    const args = JSON.stringify(params).replace(/"/g, "'");
+    return `functionArg3() called, with params: ${args}`;
+}
+
+function functionArg4(params)
+{
+    const args = JSON.stringify(params).replace(/"/g, "'");
+    return `functionArg4() called, with params: ${args}`;
+}
+
+function functionArg5(params)
+{
+    const args = JSON.stringify(params).replace(/"/g, "'");
+    return `functionArg5() called, with params: ${args}`;
+}
+
+function functionArgDefault()
+{
+    return 'functionArgDefault() was called.';
 }

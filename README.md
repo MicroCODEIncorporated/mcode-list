@@ -161,7 +161,7 @@ Running it directly will show you a set of examples for using **swap()** and **c
 ```
 node .\node_modules\mcode-list\examples
 ```
-...this will deomnstrate thru console logging various uses of the mcode-list functions.
+...this will demonstrate thru console logging various uses of the mcode-list functions.
 
 * To test with **JEST**:
 * From the **mcode-list** package directory...
@@ -242,6 +242,10 @@ Contributor's names and contact info...
 
 ## Version History
 
+* 0.5.1
+    - Added options parameter passing to Call() list processing.
+* 0.5.0
+    - All 'mcode-*' packages updated with 'ready()' only implemented in 'mcode-log'.
 * 0.4.0
     - Synchronized mcode-data, mcode-log, mcode-list, mcode-package.
 * 0.3.8
@@ -278,7 +282,7 @@ Contributor's names and contact info...
 * 0.0.5
     - Updated 'mcode-log' to v0.1.5 and updated README.
 * 0.0.4
-    - Updated README, uninstalled JSDocs and Jest for publsihing.
+    - Updated README, uninstalled JSDocs and Jest for publishing.
 * 0.0.3
     - Corrected JSDocs and Jest to DEV ONLY dependencies.
 * 0.0.2
