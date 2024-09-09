@@ -62,8 +62,8 @@
  *  01-Feb-2024   TJM-MCODE  {0003}   Swap() and Call() now throw an error if the 'keys' and 'values' lists are not the same length,
  *                                    instead of looging the error and returning a default value.
  *  29-Jan-2024   TJM-MCODE  {0004}   Updated Call() to accept and pass arguments to the functions in the 'functions' list.
- *
- *
+ *  04-Sep-2024   TJM-MCODE  {0005}   Updated Call() to take an optional comparison function to find the 'key' in the 'keys' list.
+ *  08-Sep-2024   TJM-MCODE  {0006}   Added swapif() and callif() functions to support custom key matching functions.
  *
  * NOTE: This module follow's MicroCODE's JavaScript Style Guide and Template JS file, see:
  *
@@ -171,12 +171,12 @@ const mcode = {
      *   - a number
      *   - a string
      *   - a boolean
-     *   - an object
      *   - a function
      *   - a class
      *   - a module
      *   - a BigInt
      *   - a Promise
+     *   - an Object
      *   - an Array
      *   - a JSON object
      *   - null
@@ -194,6 +194,39 @@ const mcode = {
 
         // return the value from the 'values' list corresponding to the 'key' in the 'keys' list, or default value
         return values[getIndex(key, keys)];
+    },
+
+    /**
+     * @func swapif
+     * @memberof mcode
+     * @desc Swaps a 'key' from a 'keys' list with a 'value' in a 'values' list using a custom comparison.
+     * @api public
+     * @param {any} key a JavaScript value viewed as a 'key' in the 'keys' list.
+     * @param {any[]} keys a JavaScript array of values viewed as a 'keys' list.
+     * @param {any[]} values a JavaScript array of values viewed as the 'values' list.
+     * @param {function} compareFn a comparison function to select the 'key' in the 'keys' list.
+     * @returns {any} the value from the 'values' list corresponding to the 'key' in the 'keys' list.
+     */
+    swapif: function (key, keys, values, compareFn = (a, b) => a === b)
+    {
+        // ensure the 'keys' and 'values' lists are the same length
+        if (keys.length !== values.length)
+        {
+            throw new Error(`mcode-list.swap(): The 'keys' and 'values' lists are not the same length, keys.length:${keys.length} !== values.length:${values.length}`);
+        }
+
+        // Find the index of the 'key' in the 'keys' array using the comparison function {0006}
+        const index = keys.findIndex(k => compareFn(key, k));
+
+        // If 'key' is found, return the corresponding value; otherwise, return the last value as the default
+        if (index !== -1)
+        {
+            return values[index];
+        }
+        else
+        {
+            return values[values.length - 1]; // return default (last) value
+        }
     },
 
     /**
@@ -226,6 +259,41 @@ const mcode = {
 
         // call the function from the 'functions' list corresponding to the 'key' in the 'keys' list, passing the additional arguments
         return functions[index](...args);
+    },
+
+    /**
+     * @func callif
+     * @memberof mcode
+     * @desc Calls a function from a 'functions' list using a 'key' index found in a 'keys' list,
+     * passing additional arguments to the function, and using a customed comparison function.
+     * @api public
+     * @param {any} key a JavaScript value viewed as a 'key' in the 'keys' list.
+     * @param {any[]} keys a JavaScript array of values viewed as 'keys' list.
+     * @param {function[]} functions a JavaScript array of functions viewed as 'values' list.
+     * @param {function} compareFn a comparison function to find the 'key' in the 'keys' list.
+     * @param {...any} args additional arguments to be passed to the selected function.
+     * @returns {any} the return value from the function called in 'functions' list corresponding to the 'key' in the 'keys' list.
+     */
+    callif: function (key, keys, functions, compareFn = (a, b) => a === b, ...args)
+    {
+        // ensure the 'keys' and 'functions' lists are the same length
+        if (keys.length !== functions.length)
+        {
+            throw new Error(`mcode-list.call(): The 'keys' and 'functions' lists are not the same length, keys.length:${keys.length} !== functions.length:${functions.length}`);
+        }
+
+        // Find the index of the 'key' in the 'keys' array using the comparison function {0006}
+        const index = keys.findIndex(k => compareFn(key, k));
+
+        // If 'key' is found, call the corresponding function; otherwise, call the last function as the default
+        if (index !== -1)
+        {
+            return functions[index](...args);
+        }
+        else
+        {
+            return functions[functions.length - 1](...args); // Call the default (last) function
+        }
     }
 };
 

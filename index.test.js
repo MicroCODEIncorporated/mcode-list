@@ -17,6 +17,10 @@ let list4 = [
 
 let list5 = [function1, function2, function3, function4, function5, functionDefault];
 
+let radixFlags = ["^b", "^o", "^d", "^h", "^x", "^c", "2#", "7#", "10#", "16#", "^?"];
+let radixNames = ["Binary", "Octal", "Decimal", "Hexidecimal", "Hex", "BCD", "Binary", "Octal", "Decimal", "Hex", "Decimal"];
+let radixConverters = [fromBinary, fromOctal, fromDecimal, fromHex, fromHex, fromBcd, fromBinary, fromOctal, fromDecimal, fromHex, fromDecimal];
+
 // FUNCTIONs
 function function1()
 {
@@ -46,6 +50,31 @@ function function5()
 function functionDefault()
 {
     return 'functionDefault() was called.';
+}
+
+function fromBinary()
+{
+    return 'fromBinary() was called.';
+}
+
+function fromOctal()
+{
+    return 'fromOctal() was called.';
+}
+
+function fromDecimal()
+{
+    return 'fromDecimal() was called.';
+}
+
+function fromHex()
+{
+    return 'fromHex() was called.';
+}
+
+function fromBcd()
+{
+    return 'fromBcd() was called.';
 }
 
 // temporary vars
@@ -175,6 +204,45 @@ describe('mcode.call_functions', () =>
             expect.arrayContaining([
                 expect.arrayContaining([expect.stringContaining(`list1, list5 - key:3, value:"function3() was called."`)]),
                 expect.arrayContaining([expect.stringContaining(`list1, list5 - key:99, value:"functionDefault() was called."`)]),
+            ])
+        );
+
+        // Restore the original console.log function
+        consoleSpy.mockRestore();
+    });
+});
+
+//  5) any list can be used to call a function in another list with a custom search function to pick the matching key...
+describe('mcode.callif_functions', () =>
+{
+    it('mcode.callif()--list.callif() here--should call the corresponding function from radixConverters.', () =>
+    {
+        // Create a spy on console.log
+        const consoleSpy = jest.spyOn(console, 'log');
+
+        key = "^o17777";
+        value = list.callif(key, radixFlags, radixConverters, (key, radix) => key.includes(radix));  // value = 'fromOctal() was called.'
+        mcode.info(`radixFlags, radixConverters - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
+
+        key = "16#ACDF";
+        value = list.callif(key, radixFlags, radixConverters, (key, radix) => key.includes(radix));  // value = 'fromOctal() was called.'
+        mcode.info(`radixFlags, radixConverters - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
+
+        key = "12345";
+        value = list.callif(key, radixFlags, radixConverters, (key, radix) => key.includes(radix));  // value = 'fromOctal() was called.'
+        mcode.info(`radixFlags, radixConverters - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
+
+        key = "^c139";
+        value = list.swapif(key, radixFlags, radixNames, (key, radix) => key.includes(radix));  // value = 'BCD'
+        mcode.info(`radixFlags, radixNames - key:${key}, value:${JSON.stringify(value)}`, MODULE_NAME);
+
+        // Check that console.log was called with the expected message
+        expect(consoleSpy.mock.calls).toEqual(
+            expect.arrayContaining([
+                expect.arrayContaining([expect.stringContaining(`radixFlags, radixConverters - key:^o17777, value:"fromOctal() was called."`)]),
+                expect.arrayContaining([expect.stringContaining(`radixFlags, radixConverters - key:16#ACDF, value:"fromHex() was called."`)]),
+                expect.arrayContaining([expect.stringContaining(`radixFlags, radixConverters - key:12345, value:"fromDecimal() was called."`)]),
+                expect.arrayContaining([expect.stringContaining(`radixFlags, radixNames - key:^c139, value:"BCD"`)]),
             ])
         );
 

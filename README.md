@@ -133,12 +133,30 @@ First step, remove all embedded __if-then-else__ and __switch-case__ logic from 
 
 ```
 
+* list-processing with caller's key matching of partial keys (sub-strings)
+```
+    partialkeys: { part1, part2, part3 };
+    functions: { func1, func2, func3 };
+    ...
+    value = list.callif(key, partialkeys, values, (key, partialkey) => key.includes(partialkey));
+
+```
+
 * list-processing with mixed or swapped lists (reversibility)
 ```
     keys: { key1, key2, key3 };
     values: { value1, value2, value3 };
     ...
     key = mcode.swap(value, values, keys);
+
+```
+
+* list-processing with caller's key matching of partial keys (sub-strings)
+```
+    partialkeys: { part1, part2, part3 };
+    values: { value1, value2, value3 };
+    ...
+    value = list.swapif(key, partialkeys, values, (key, partialkey) => key.includes(partialkey));
 
 ```
 
@@ -181,8 +199,10 @@ These are the functions we want at the ready in any module for development and d
 
 | Function	    | Description                                                                    | Usage                     |
 |---------------|--------------------------------------------------------------------------------|---------------------------|
-| **swap**      | Swaps a 'key' found in a key list with a matching 'value' in value list        | value = mcode.swap(key, keys, values)
-| **call**      | Calls a function in a 'functions' list based on a 'key' found in a keys list   | result = mcode.call(key, keys, functions)
+| **swap**      | Swaps a 'key' found in a key list with a matching 'value' in value list        | value = mcode.swap(key, keys, values, [args])
+| **swapif**    | Supports a custom function to select a partion 'key' match                     | value = mcode.swapif(key, keys, values, function, [args])
+| **call**      | Calls a function in a 'functions' list based on a 'key' found in a keys list   | result = mcode.call(key, keys, functions, [args])
+| **callif**    | Supports a custom function to select a partion 'key' match                     | result = mcode.call(key, keys, functions, function, [args])
 
 
 ### Documentation
@@ -223,6 +243,7 @@ Contact Timothy McGuire, support@mcode.com.
 
 | Word or Acronym	| Description/Definition                                |
 |-------------------|-------------------------------------------------------|
+|  **LISP**         | List Processing.
 |  **NPM**	        | Node Package Manager, actually “Node PM”, “Node pkgmakeinst” a system to deploy, install, and maintain NodeJS Apps. (PM was a BASH utility).
 |  **NVM**	        | Node Version Manager, a tool that supports changing NodeJS versions.
 |  **MERN**         | MongoDB, Express, React, Node JS.
@@ -242,6 +263,8 @@ Contributor's names and contact info...
 
 ## Version History
 
+* 0.5.2
+    - Added swapif() and callif() to extend key matching to a caller's custom function.
 * 0.5.1
     - Added options parameter passing to Call() list processing.
 * 0.5.0
