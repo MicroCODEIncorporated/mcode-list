@@ -263,6 +263,8 @@ Contributor's names and contact info...
 
 ## Version History
 
+* 0.5.3
+    - Updated to mcode-data v0.5.1 and mcode-log v0.5.3
 * 0.5.2
     - Added swapif() and callif() to extend key matching to a caller's custom function.
 * 0.5.1
