@@ -263,61 +263,63 @@ Contributor's names and contact info...
 
 ## Version History
 
-* 0.5.3
+* v0.5.5
+    - Updated to mcode-data 0.5.5 and mcode-log 0.5.5
+* v0.5.3
     - Updated to mcode-data v0.5.1 and mcode-log v0.5.3
-* 0.5.2
+* v0.5.2
     - Added swapif() and callif() to extend key matching to a caller's custom function.
-* 0.5.1
+* v0.5.1
     - Added options parameter passing to Call() list processing.
-* 0.5.0
+* v0.5.0
     - All 'mcode-*' packages updated with 'ready()' only implemented in 'mcode-log'.
-* 0.4.0
+* v0.4.0
     - Synchronized mcode-data, mcode-log, mcode-list, mcode-package.
-* 0.3.8
+* v0.3.8
     - Moved all data handling functions into new mcode-data package.
-* 0.3.0
+* v0.3.0
     - Updated to use mcode-log() v3.0.0.
     - Removed JEST from the NPM package, only needed for testing, instructions to install are included.
-* 0.2.6
+* v0.2.6
     - Upgrade 'mcode-log' to v0.2.6
-* 0.2.5
+* v0.2.5
     - Upgrade 'mcode-log' to v0.2.5
-* 0.2.4
+* v0.2.4
     - Upgrade 'mcode-log' to v0.2.4
-* 0.2.2
+* v0.2.2
     - Upgrade 'mcode-log' to v0.2.2
-* 0.2.1
+* v0.2.1
     - Upgrade 'mcode-log' to v0.2.1
-* 0.2.0
+* v0.2.0
     - Upgrade 'mcode-log' to v0.2.0, sync'ed package versions to v0.2.0
-* 0.1.5
+* v0.1.5
     - Upgrade 'mcode-log' to v0.1.18.
-* 0.1.4
+* v0.1.4
     - Upgrade 'mcode-log' to v0.1.17.
-* 0.1.3
+* v0.1.3
     - Upgrade 'mcode-log' to v0.1.16.
-* 0.1.2
+* v0.1.2
     - Upgrade 'mcode-log' to v0.1.15.
-* 0.1.1
+* v0.1.1
     - Improved README examples, corrected typos.
-* 0.1.0
+* v0.1.0
     - Changed export to the Univeral Module Defintion (UMD) pattern, and now throw exceptions on list mismatches.
-* 0.0.6 * 0.0.7
+* v0.0.6 * v0.0.7
     - Updated 'mcode-log' to v0.1.11, corrected 'mcode.log()' call to 'log()' with this module, and updated README.
-* 0.0.5
+* v0.0.5
     - Updated 'mcode-log' to v0.1.5 and updated README.
-* 0.0.4
+* v0.0.4
     - Updated README, uninstalled JSDocs and Jest for publishing.
-* 0.0.3
+* v0.0.3
     - Corrected JSDocs and Jest to DEV ONLY dependencies.
-* 0.0.2
+* v0.0.2
     - Added JSDocs, Jest and updated README.
-* 0.0.1
+* v0.0.1
     - Initial movement of our internal code into an NPM package for ease of use in other projects.
 
 ## Future Development
 
-* 0.1.*
+* v0.1.*
     - Any additional core code we will develop for general list processing work.
     - Complex function execution with passed arguments or passed functions.
 
