@@ -263,15 +263,18 @@ Contributor's names and contact info...
 
 ## Version History
 
+* v0.6.0
+    - Added more standardized JSDoc module headers for inclusion in end-product documentation.
+    - Updated to mcode-data v0.6.0 and mcode-log v0.6.0
 * v0.5.9
-    - Updated to mcode-data 0.5.9 and mcode-log 0.5.9
+    - Updated to mcode-data v0.5.9 and mcode-log v0.5.9
 * v0.5.8
-    - Updated to mcode-data 0.5.8 and mcode-log 0.5.8
+    - Updated to mcode-data v0.5.8 and mcode-log v0.5.8
 * v0.5.6
-    - Corrected cross-spawn  7.0.0 - 7.0.4; Severity: high; Regular Expression Denial of Service
+    - Corrected cross-spawn  v7.0.0 - 7.0.4; Severity: high; Regular Expression Denial of Service
     - Sync'ed to mcode-log v0.5.7 and mcode-data v0.5.7
 * v0.5.5
-    - Updated to mcode-data 0.5.5 and mcode-log 0.5.5
+    - Updated to mcode-data 0.5.5 and mcode-log v0.5.5
 * v0.5.3
     - Updated to mcode-data v0.5.1 and mcode-log v0.5.3
 * v0.5.2

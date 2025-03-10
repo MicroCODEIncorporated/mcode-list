@@ -1,17 +1,19 @@
 // #region  F I L E
 // <copyright file="mcode-list/index.js" company="MicroCODE Incorporated">Copyright © 2022-2024 MicroCODE, Inc. Troy, MI</copyright><author>Timothy J. McGuire</author>
 // #region  M O D U L E
-
 // #region  D O C U M E N T A T I O N
-/*
- *      Title:    MicroCODE Shared Function Library
- *      Module:   modules (node_modules/mcode-list/index.js)
+/**
  *      Project:  MicroCODE MERN Applications
- *      Customer: Internal+MIT xPRO Course
- *      Creator:  MicroCODE Incorporated
- *      Date:     January 2022-2024
- *      Author:   Timothy McGuire
+ *      Customer: Internal + MIT xPRO Course
+ *      @module   'mcode-list.js'
+ *      @memberof mcode
+ *      @created  January 2022-2024
+ *      @author   Timothy McGuire, MicroCODE, Inc.
+ *      @description >
+ *      MicroCODE Shared List Processing Library
  *
+ *      LICENSE:
+ *      --------
  *      MIT License: MicroCODE.mcode-list
  *
  *      Copyright (c) 2022-2024 Timothy McGuire, MicroCODE, Inc.
@@ -37,13 +39,11 @@
  *
  *      DESCRIPTION:
  *      ------------
- *
  *      This module implements the MicroCODE's Common JavaScript functions for list processing.
  *
  *
  *      REFERENCES:
  *      -----------
- *
  *      1. MIT xPRO Course: Professional Certificate in Coding: Full Stack Development with MERN
  *
  *      2. LADDERS® source code: MACRO-11, MACRO-32, C#, and JavaScript.
@@ -53,17 +53,19 @@
  *
  *      MODIFICATIONS:
  *      --------------
+ *      Date:         By-Group:   Rev:    Description:
  *
- *  Date:         By-Group:   Rev:    Description:
+ *      30-Jan-2024   TJM-MCODE  {0001}   New module for common reusable JavaScript list processing functions.
+ *      01-Feb-2024   TJM-MCODE  {0002}   Changed to the Universal Module Definition (UMD) pattern to support AMD,
+ *                                        CommonJS/Node.js, and browser global in our exported module.
+ *      01-Feb-2024   TJM-MCODE  {0003}   Swap() and Call() now throw an error if the 'keys' and 'values' lists are not the same length,
+ *                                        instead of logging the error and returning a default value.
+ *      29-Jan-2024   TJM-MCODE  {0004}   Updated Call() to accept and pass arguments to the functions in the 'functions' list.
+ *      04-Sep-2024   TJM-MCODE  {0005}   Updated Call() to take an optional comparison function to find the 'key' in the 'keys' list.
+ *      08-Sep-2024   TJM-MCODE  {0006}   Added swapif() and callif() functions to support custom key matching functions.
  *
- *  30-Jan-2024   TJM-MCODE  {0001}   New module for common reusable JavaScript list processing functions.
- *  01-Feb-2024   TJM-MCODE  {0002}   Changed to the Universal Module Definition (UMD) pattern to support AMD,
- *                                    CommonJS/Node.js, and browser global in our exported module.
- *  01-Feb-2024   TJM-MCODE  {0003}   Swap() and Call() now throw an error if the 'keys' and 'values' lists are not the same length,
- *                                    instead of looging the error and returning a default value.
- *  29-Jan-2024   TJM-MCODE  {0004}   Updated Call() to accept and pass arguments to the functions in the 'functions' list.
- *  04-Sep-2024   TJM-MCODE  {0005}   Updated Call() to take an optional comparison function to find the 'key' in the 'keys' list.
- *  08-Sep-2024   TJM-MCODE  {0006}   Added swapif() and callif() functions to support custom key matching functions.
+ *
+ *
  *
  * NOTE: This module follow's MicroCODE's JavaScript Style Guide and Template JS file, see:
  *
