@@ -275,7 +275,6 @@ Contributor's names and contact info...
 
 - v0.6.1
   - Use \_<package> naming convention for internal use of our own mcode.<package> within other packages.
-  - Updated to mcode-data v0.6.0 and mcode-log v0.6.0
 - v0.6.0
   - Added more standardized JSDoc module headers for inclusion in end-product documentation.
   - Updated to mcode-data v0.6.2 and mcode-log v0.6.9
