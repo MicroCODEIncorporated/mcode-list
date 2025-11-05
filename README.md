@@ -273,6 +273,8 @@ Contributor's names and contact info...
 
 ## Version History
 
+- v0.6.2
+  - Updated to mcode-data v0.6.4 and mcode-log v0.8.0
 - v0.6.1
   - Use \_<package> naming convention for internal use of our own mcode.<package> within other packages.
 - v0.6.0
